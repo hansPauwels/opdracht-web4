@@ -19,6 +19,7 @@ public class Controller extends HttpServlet {
 	
 	private PersonService model = new PersonService();
 	private ControllerFactory controllerFactory = new ControllerFactory();
+	private ASyncFactory aSyncFactory = new ASyncFactory();
 
 	public Controller() {
 		super();
@@ -26,8 +27,24 @@ public class Controller extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
 		processRequest(request, response);
+
 	}
+
+	/*private void processAsyncReq(HttpServletRequest request, HttpServletResponse response) {
+		String action = request.getParameter("action");
+		if(action != null) {
+			ASyncHandler handler;
+			try {
+				handler = aSyncFactory.getController(action, model);
+				handler.handleRequest(request, response);
+			} catch (IOException e) {
+				//TODO change this
+				System.out.println(e.getMessage());
+			}
+		}
+	}*/
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -41,19 +58,32 @@ public class Controller extends HttpServlet {
         String destination = "index.jsp";
         if (action != null) {
         	RequestHandler handler;
+        	ASyncHandler aHandler;
         	try {
         		handler = controllerFactory.getController(action, model);
-				destination = handler.handleRequest(request, response);
+        		if(handler != null) {
+					destination = handler.handleRequest(request, response);
+				} else {
+        			aHandler = aSyncFactory.getController(action, model);
+        			aHandler.handleRequest(request, response);
+        			destination = null;
+				}
+
         	} 
         	catch (NotAuthorizedException exc) {
         		List<String> errors = new ArrayList<String>();
         		errors.add(exc.getMessage());
         		request.setAttribute("errors", errors);
-        		destination="index.jsp";
+        		//destination="index.jsp";
         	}
         }
-        RequestDispatcher view = request.getRequestDispatcher(destination);
-        view.forward(request, response);
+        if(destination != null) {
+			RequestDispatcher view = request.getRequestDispatcher(destination);
+			view.forward(request, response);
+		}
+
 	}
+
+
 
 }

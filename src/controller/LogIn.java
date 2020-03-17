@@ -11,7 +11,7 @@ import domain.Person;
 import domain.PersonService;
 import domain.Status;
 
-public class LogIn extends RequestHandler {
+public class LogIn extends SyncHandler {
 
 	@Override
 	public String handleRequest(HttpServletRequest request,

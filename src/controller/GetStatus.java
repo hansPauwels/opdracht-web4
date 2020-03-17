@@ -7,18 +7,28 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class GetStatus extends RequestHandler {
+public class GetStatus extends ASyncHandler {
     @Override
-    public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         if(session != null) {
             Person p = (Person) session.getAttribute("user");
-            String status = p.getCustomStatus();
+            String status = this.toJSON(p.getCustomStatus());
             //response.setContentType("text/json");
-            response.setContentType("text/plain");
+            response.setContentType("text/json");
             response.getWriter().write(status);
 
        }
-        return "Controller?action=ChatPage";
     }
+
+    private String toJSON (String status) {
+        StringBuffer json = new StringBuffer();
+
+        json.append("{ \"status\" : \"");
+        json.append(status);
+        json.append("\"}");
+
+        return json.toString();
+    }
+
 }
