@@ -63,7 +63,7 @@ public class Controller extends HttpServlet {
         		handler = controllerFactory.getController(action, model);
         		if(handler != null) {
 					destination = handler.handleRequest(request, response);
-				} else {
+				} else if (handler == null) {
         			aHandler = aSyncFactory.getController(action, model);
         			aHandler.handleRequest(request, response);
         			destination = null;

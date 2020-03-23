@@ -1,4 +1,4 @@
-document.getElementById("body").onload = getStatus;
+//document.getElementById("body").onload = getStatus;
 
 var xhr = new XMLHttpRequest();
 var getStatusReq = new XMLHttpRequest();

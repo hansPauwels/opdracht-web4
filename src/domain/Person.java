@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,6 +20,7 @@ public class Person {
 	private Role role;
 	private Status currentStatus;
 	private String customStatus = "Online";
+	private ArrayList<Person> friends = new ArrayList<>();
 
 	public Person(String userId, String password, String firstName,
 			String lastName,Role role) {
@@ -48,6 +50,26 @@ public class Person {
         } */
 
 	    this.customStatus = newCStatus;
+    }
+
+    public void addFriend(Person p) {
+	    if(p == null) {
+	        throw new IllegalArgumentException("The friend to be added cannot be NULL");
+        }
+
+	    friends.add(p);
+    }
+
+    public ArrayList<Person> getFriends() {
+        return this.friends;
+    }
+
+    public void removeFriend(Person p) {
+	    if(p == null) {
+            throw new IllegalArgumentException("The friend to be removed cannot be NULL");
+        }
+
+	    friends.remove(p);
     }
 
     public String getCustomStatus() {

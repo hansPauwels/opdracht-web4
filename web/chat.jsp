@@ -17,13 +17,34 @@
 </jsp:include>
 <main>
     <div id="status-div">
-        <p id="current-status">${user.customStatus}</p>
+        <c:choose>
+        <c:when test="${user == null}">
+            <p>Please login first.</p>
+        </c:when>
+            <c:otherwise>
+                <p id="current-status">${user.customStatus}</p>
+
+    </div>
+    <div id="friends-div">
+        <table>
+            <tr>
+                <th>Name:</th>
+                <th>Status:</th>
+            </tr>
+            <c:forEach var="friend" items="${user.friends}">
+                <td><p>${friend.firstName}</p></td>
+                <td><p>${friend.customStatus}</p></td>
+            </c:forEach>
+        </table>
+
     </div>
 <div id="status-container">
     <label for="status"><p>Change status: </p></label>
     <input type="text" name="status" id="status">
     <input type="button" value="Change" id="change-status" onclick="updateStatus()">
 </div>
+    </c:otherwise>
+    </c:choose>
 </main>
 <script src="js/javascript.js"></script>
 </body>
