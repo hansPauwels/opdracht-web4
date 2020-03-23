@@ -8,6 +8,8 @@ public interface PersonRepository {
 
 	public abstract void add(Person person);
 
+	public Person getPersonByName(String name);
+
 	public abstract void delete(String userId);
 
 	public abstract Person get(String userId);

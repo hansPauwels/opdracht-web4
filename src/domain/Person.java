@@ -64,6 +64,17 @@ public class Person {
         return this.friends;
     }
 
+    public Person getFriend(String fName) {
+	    Person result = null;
+
+	    for(Person p : friends) {
+	        if(p.getFirstName().equals(fName)) {
+	            result = p;
+            }
+        }
+	    return result;
+    }
+
     public void removeFriend(Person p) {
 	    if(p == null) {
             throw new IllegalArgumentException("The friend to be removed cannot be NULL");

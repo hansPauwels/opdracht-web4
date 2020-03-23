@@ -28,3 +28,11 @@ function getNewStatus() {
         }
     }
 }
+
+function addFriend() {
+    var friendName = "fName=" + encodeURIComponent(document.getElementById("addfriend").value);
+    alert(friendName);
+    xhr.open("POST", "Controller?action=AddFriend", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(friendName);
+}

@@ -13,7 +13,7 @@ public class ASyncFactory {
             Class<?> handlerClass = Class.forName("controller."+ handlerName);
             Object handlerObject = handlerClass.newInstance();
             handler = (ASyncHandler) handlerObject;
-            //handler.setModel(model);
+            handler.setModel(model);
         } catch (Exception e) {
             throw new RuntimeException("Deze pagina bestaat niet!!!!");
         }

@@ -11,7 +11,7 @@ public class UpdateStatus extends ASyncHandler {
     @Override
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String newStatus = (String) request.getParameter("status");
-        System.out.println(newStatus);
+        //System.out.println(newStatus);
         HttpSession session = request.getSession();
         if(session != null) {
             Person p = (Person) session.getAttribute("user");

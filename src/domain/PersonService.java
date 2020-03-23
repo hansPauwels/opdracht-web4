@@ -10,6 +10,10 @@ public class PersonService {
 
 	public PersonService(){
 	}
+
+	public Person getPersonByName(String name) {
+		return getPersonRepository().getPersonByName(name);
+	}
 	
 	public Person getPerson(String personId)  {
 		return getPersonRepository().get(personId);

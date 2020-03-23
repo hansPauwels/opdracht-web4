@@ -29,7 +29,20 @@ public class PersonRepositoryStub implements PersonRepository {
 		}
 		return persons.get(personId);
 	}
-	
+
+	public Person getPersonByName(String name) {
+		if(name == null || name.trim().isEmpty()) {
+			throw new IllegalArgumentException("No first name given");
+		}
+
+		for(Person p : persons.values()) {
+			if(p.getFirstName().equals(name)) {
+				return p;
+			}
+		}
+		return null;
+	}
+
 	public List<Person> getAll(){
 		return new ArrayList<Person>(persons.values());	
 	}

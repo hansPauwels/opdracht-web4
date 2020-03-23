@@ -32,8 +32,10 @@
                 <th>Status:</th>
             </tr>
             <c:forEach var="friend" items="${user.friends}">
+                <tr>
                 <td><p>${friend.firstName}</p></td>
                 <td><p>${friend.customStatus}</p></td>
+                </tr>
             </c:forEach>
         </table>
 
@@ -43,6 +45,11 @@
     <input type="text" name="status" id="status">
     <input type="button" value="Change" id="change-status" onclick="updateStatus()">
 </div>
+    <div id="addfriend-container">
+        <label for="addfriend"><p>Add a friend: </p></label>
+        <input type="text" name="addfriend" id="addfriend">
+        <input type="button" value="Add friend" id="add-btn" onclick="addFriend()">
+    </div>
     </c:otherwise>
     </c:choose>
 </main>
