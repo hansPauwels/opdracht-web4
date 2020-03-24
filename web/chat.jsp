@@ -26,14 +26,14 @@
 
     </div>
     <div id="friends-div">
-        <table>
+        <table id="friends">
             <tr>
                 <th>Name:</th>
                 <th>Status:</th>
             </tr>
             <c:forEach var="friend" items="${user.friends}">
                 <tr>
-                <td><p>${friend.firstName}</p></td>
+                <td id="${user.firstName}"><p>${friend.firstName}</p></td>
                 <td><p>${friend.customStatus}</p></td>
                 </tr>
             </c:forEach>

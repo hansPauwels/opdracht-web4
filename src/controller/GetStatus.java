@@ -13,7 +13,7 @@ public class GetStatus extends ASyncHandler {
         HttpSession session = request.getSession();
         if(session != null) {
             Person p = (Person) session.getAttribute("user");
-            String status = this.toJSON(p.getCustomStatus());
+            String status = super.toJSON(p.getCustomStatus());
             //response.setContentType("text/json");
             response.setContentType("text/json");
             response.getWriter().write(status);
@@ -21,14 +21,6 @@ public class GetStatus extends ASyncHandler {
        }
     }
 
-    private String toJSON (String status) {
-        StringBuffer json = new StringBuffer();
 
-        json.append("{ \"status\" : \"");
-        json.append(status);
-        json.append("\"}");
-
-        return json.toString();
-    }
 
 }

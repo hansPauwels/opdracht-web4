@@ -90,10 +90,12 @@ public class Person {
 	public void setCurrentStatus(Status newStatus) {
 	    this.currentStatus = newStatus;
     }
-
+/*
     public String getCurrentStatus() {
 	    return this.currentStatus.getStatus();
     }
+
+ */
 
 	public Role getRole() {
 		return this.role;

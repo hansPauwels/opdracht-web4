@@ -23,7 +23,7 @@ public class UpdateStatus extends ASyncHandler {
         }
     }
 
-    private String toJSON (String status) {
+    protected String toJSON (String status) {
         StringBuffer json = new StringBuffer();
 
         json.append("{ \"status\" : \"");

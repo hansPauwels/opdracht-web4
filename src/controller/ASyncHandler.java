@@ -18,4 +18,14 @@ public abstract class ASyncHandler {
         return personService;
     }
     public abstract void handleRequest (HttpServletRequest request, HttpServletResponse response) throws IOException;
+
+    protected String toJSON (String status) {
+        StringBuffer json = new StringBuffer();
+
+        json.append("{ \"status\" : \"");
+        json.append(status);
+        json.append("\"}");
+
+        return json.toString();
+    }
 }
