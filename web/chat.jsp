@@ -31,12 +31,12 @@
                 <th>Name:</th>
                 <th>Status:</th>
             </tr>
-            <c:forEach var="friend" items="${user.friends}">
-                <tr>
-                <td id="${user.firstName}"><p>${friend.firstName}</p></td>
-                <td><p>${friend.customStatus}</p></td>
-                </tr>
-            </c:forEach>
+<%--            <c:forEach var="friend" items="${user.friends}">--%>
+<%--                <tr>--%>
+<%--                <td id="${user.firstName}"><p>${friend.firstName}</p></td>--%>
+<%--                <td><p>${friend.customStatus}</p></td>--%>
+<%--                </tr>--%>
+<%--            </c:forEach>--%>
         </table>
 
     </div>

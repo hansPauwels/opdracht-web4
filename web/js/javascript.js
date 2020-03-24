@@ -48,14 +48,36 @@ function updateFriends() {
     if(getFriendsReq.readyState === 4) {
         if(getFriendsReq.status === 200) {
             var resp = JSON.parse(getFriendsReq.responseText);
-            alert(resp);
-            var friendsList = document.getElementById("friends");
+            //alert(resp);
+            var friends = document.getElementById("friends");
+
+            while (friends.rows.length > 1) {
+                friends.deleteRow(1);
+            }
+
             for (var i = 0; i < resp.length; i++) {
                 var curObject = resp[i];
-                for (var property in curObject) {
 
-                }
+
+
+                var row = document.createElement("tr");
+                var nameTd = document.createElement("td");
+                var nameParagraph = document.createElement("p");
+                var name = document.createTextNode(curObject["name"]);
+                nameParagraph.appendChild(name);
+                nameTd.appendChild(nameParagraph);
+                row.appendChild(nameTd);
+                var statusTd = document.createElement("td");
+                var statusP = document.createElement("p");
+                var status = document.createTextNode(curObject["status"]);
+                statusP.appendChild(status);
+                statusTd.appendChild(statusP);
+                row.appendChild(statusTd);
+                friends.appendChild(row);
+
+                //friendsList.appendChild(friends);
             }
+            setTimeout(getFriends, 5000);
         }
     }
 
